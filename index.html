@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Курс «Рекрутинг з 0»</title>
+    <style>
+      body {
+        background-color: #f2e4d1;
+        font-family: Arial, sans-serif;
+        color: #271d1d;
+      }
+      h1,
+      h2 {
+        color: #f2885b;
+      }
+      p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+      ul > li {
+        margin: 7px 0;
+        list-style: circle;
+      }
+      input {
+        display: block;
+        max-width: -webkit-fill-available;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type='checkbox'] {
+        display: inline-block;
+        margin-right: 8px;
+        width: fit-content;
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        background-color: #f2885b;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.4s;
+      }
+      button:hover {
+        background-color: #f2672cde;
+      }
+      a {
+        color: #f2885b;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      #contactForm {
+        max-width: 100%;
+      }
+      .checkbox-label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      .hidden {
+        display: none;
+      }
+      .thank-you {
+        padding: 20px;
+        background: #fff;
+        border: 2px solid #f2885b;
+        border-radius: 8px;
+        text-align: center;
+      }
+      @media (max-width: 600px) {
+        input {
+          padding: 10px;
+          font-size: 0.95rem;
+        }
+        button {
+          padding: 12px;
+          font-size: 1rem;
+        }
+        .checkbox-label {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <p>Привіт, колего!</p>
+      <p>
+        👋Лише учасники цього списку отримають
+        <b>ексклюзивну можливість придбати програму «Рекрутер з 0» за найвигіднішою стартовою ціною.</b>
+        Після відкриття продажу вартість зросте.
+      </p>
+      <p>
+        Тому не пропусти повідомлення від автора курсу Юлії Глєбової та її команди.
+        <b>Кількість місць у передзамовленні обмежена!</b>
+      </p>
+
+      <p>Залишай свої дані тільки якщо:</p>
+      <ul>
+        <li>Ти справді хочеш опанувати нову професію та навчитись закривати складні вакансії</li>
+        <li>Ти мрієш про роботу, яка дає гнучкість, свободу та розвиток, в компанії, або на фрілансі</li>
+        <li>Збільшення доходу для тебе зараз пріоритет №1, і ти готова/ий впроваджувати сучасні інструменти</li>
+        <li>Ти втомилася/втомився від марної метушні, перевтоми і роботи яка тебе обмежує</li>
+        <li>Ти хочеш мати нову затребувану професію, яку можна поєднувати з основною роботою, або зробити її головною справою</li>
+      </ul>
+      <h2>Заповни коротку форму:</h2>
+      <div id="form-container">
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Введи своє ім’я та прізвище" required />
+          <input type="email" name="email" placeholder="Введи свій email" required />
+          <label>
+            <b>Залиши нік в Instagram (через @)</b>
+            <input type="text" name="instagram" required />
+          </label>
+          <label>
+            <b>Залиши нік у Telegram</b>
+            <input type="text" name="telegram" required />
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" name="personal_data" required />
+            Даю згоду на збір, обробку та зберігання моїх персональних даних відповідно до
+            <a href="#">[ПОЛІТИКИ КОНФІДЕНЦІЙНОСТІ]</a>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" name="marketing_agree" />
+            Даю згоду на отримання інформаційних та маркетингових розсилок
+          </label>
+
+          <p>
+            <b>
+              🟡 Натисніть “Відправити анкету” — і першими отримаєте доступ до програми, яка може змінити не лише Вашу кар’єру, а
+              й життя.
+            </b>
+          </p>
+          <button type="submit">Відправити анкету</button>
+        </form>
+      </div>
+
+      <div id="thankYou" class="hidden thank-you">
+        <h2>Дякуємо!</h2>
+        <p>Найближчим часом ми з Вами зв’яжемось</p>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById('contactForm')
+      const formContainer = document.getElementById('form-container')
+      const thankYou = document.getElementById('thankYou')
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault()
+
+        // Проверим обязательные чекбоксы
+        const checkboxes = form.querySelectorAll('input[type="checkbox"][required]')
+        let allChecked = true
+        checkboxes.forEach((cb) => {
+          if (!cb.checked) allChecked = false
+        })
+
+        if (!allChecked) {
+          alert('Будь ласка, відзначте всі обов’язкові згоди.')
+          return
+        }
+
+        // Отправим форму через fetch
+        const formData = new FormData(form)
+
+        fetch('https://formsubmit.co/ajax/glebova.julias@gmail.com', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            formContainer.classList.add('hidden')
+            thankYou.classList.remove('hidden')
+          })
+          .catch((error) => {
+            alert('Сталася помилка. Спробуйте пізніше.')
+            console.error(error)
+          })
+      })
+    </script>
+  </body>
+</html>
